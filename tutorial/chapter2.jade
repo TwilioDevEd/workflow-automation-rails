@@ -48,19 +48,19 @@
 
     Now we have an attribute that can trigger our workflow events. Time to write some callbacks.
 
-.step(data-title="Reservation Callbacks", data-file="app/models/reservation.rb", data-highlight="10-12")
+.step(data-title="Creating the Reservation", data-file="app/controllers/reservations_controller.rb", data-highlight="8-19, 29-35")
   :markdown
-    ## Reservation Callbacks
+    ## The Reservation Controller
 
-    Active Record gives us some nifty handles for triggering methods on the Model-- specifically [callbacks](http://api.rubyonrails.org/classes/ActiveRecord/Callbacks.html).
-
-    You can find more callbacks in `user.rb` but let's look at the two here.
+    Here is the reservation controller. We'll be posting our reservation details to the `create` route from the vacation property page.
 
     After we create the reservation we want to notify the host that they have a pending reservation. Then after the status has been changed, we want to notify the guest that their reservation has either been accepted or rejected.
 
-    Notifying the host of a reservation is a little tricky so let's zoom in to this function.
+    While the `Reservation` model handles the notification, we want to keep the actions in the controller to show our intention.
 
-.step(data-title="Notifying the Host", data-file="app/models/reservation.rb", data-highlight="10-29")
+    Next let's take a look at how exactly we notify the host.
+
+.step(data-title="Notifying the Host", data-file="app/models/reservation.rb", data-highlight="10-25")
   :markdown
     ## Notifying the Host
 

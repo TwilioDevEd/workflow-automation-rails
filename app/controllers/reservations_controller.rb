@@ -28,8 +28,10 @@ class ReservationsController < ApplicationController
 
       if sms_input == "accept" || sms_input == "yes"
         @reservation.confirm!
+        @reservation.notify_guest
       else
         @reservation.reject!
+        @reservation.notify_guest
       end
 
       @host.check_for_reservations_pending

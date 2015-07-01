@@ -10,7 +10,7 @@
 
     Arguably the most important task delegated to our `User` model is to send an SMS to the user when we request it. Click next and we'll go over that.
 
-.step(data-title='Sending Messages', data-file="app/models/user.rb", data-highlight="13-38")
+.step(data-title='Sending Messages', data-file="app/models/user.rb", data-highlight="13-37")
   :markdown
     ## Sending Messages
 
@@ -22,7 +22,7 @@
 
     Great, so we've built a way to send messages to our users. Now we need a way to handle incoming texts from our host when she accepts the reservation.
 
-.step(data-title='Incoming Messages', data-file="app/controllers/reservations_controller.rb", data-highlight="20-42")
+.step(data-title='Incoming Messages', data-file="app/controllers/reservations_controller.rb", data-highlight="21-45")
   :markdown
     ## Handling Incoming Messages
 
@@ -45,11 +45,11 @@
 
     Usually a Rails controller has a template associated with it that renders a webpage. In our case the only request being made will be by Twilio's API, so we don't need a public page. Instead we're using Twilio's Ruby API to render a custom TwiML response as raw XML on the page.
 
-.step(data-title='Notifying the Guest', data-file="app/models/reservation.rb", data-highlight="43-50")
+.step(data-title='Notifying the Guest', data-file="app/models/reservation.rb", data-highlight="37-44")
   :markdown
-    The final step in our workflow is to notify the guest that their reservation has been booked. Well remember the second reservation callback from a previous step? Now we get to use it!
+    The final step in our workflow is to notify the guest that their reservation has been booked.
 
-    By using the `after_update` callback we guarantee that this method is going to run. It's quite simple:
+    We called this method earlier from the `reservation_controller`, specifically when we updated the reservation status. Here's what it does:
     * We lookup the guest with the `reservation.phone_number`
     * If the status was changed to an expected result, then we notify the guest of the change.
 
