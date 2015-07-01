@@ -11,6 +11,7 @@ class ReservationsController < ApplicationController
 
     if @reservation.save
       flash[:notice] = "Sending your reservation request now."
+      @reservation.notify_host
       redirect_to @vacation_property
     else
       flast[:danger] = @reservation.errors
@@ -26,9 +27,9 @@ class ReservationsController < ApplicationController
       @reservation = @host.pending_reservation
 
       if sms_input == "accept" || sms_input == "yes"
-        @reservation.confirm
+        @reservation.confirm!
       else
-        @reservation.reject
+        @reservation.reject!
       end
 
       @host.check_for_reservations_pending
