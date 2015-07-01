@@ -14,15 +14,15 @@
   :markdown
     ## Sending Messages
 
-    Since we know we're only ever going to be sending text messages to our users, it makes sense to create this function on the `User` class. These 7 lines comprise the quintessential way to send an SMS or MMS from the Twilio REST API.
+    Since we only send text messages in our application when we're communicating with specific users, it makes sense to create this function on the `User` class. These 7 lines comprise the quintessential way to send an SMS or MMS from the Twilio REST API.
 
-    First we look up our app's phone number, initiate our Twilio client and build the message. Now whenever we need to communicate with a user, whether host or guest, we can just pass a message to this user method and voilah! we've sent them a text.
+    First we look up our app's phone number, initiate our Twilio client and build the message. Now whenever we need to communicate with a user, whether host or guest, we can just pass a message to this user method and voilà! We've sent them a text.
 
     If you peek below this method you'll see the helper methods for finding `pending_reservations` that we mentioned previously.
 
     Great, so we've built a way to send messages to our users. Now we need a way to handle incoming texts from our host when she accepts the reservation.
 
-.step(data-title='Incoming Messages', data-file="app/controllers/reservations_controller.rb", data-highlight="21-45")
+.step(data-title='Incoming Messages', data-file="app/controllers/reservations_controller.rb", data-highlight="21-59")
   :markdown
     ## Handling Incoming Messages
 
@@ -47,6 +47,8 @@
 
 .step(data-title='Notifying the Guest', data-file="app/models/reservation.rb", data-highlight="37-44")
   :markdown
+    ## Notifying the Guest
+
     The final step in our workflow is to notify the guest that their reservation has been booked.
 
     We called this method earlier from the `reservation_controller`, specifically when we updated the reservation status. Here's what it does:
@@ -59,7 +61,9 @@
   :markdown
     ## All Done
 
-    Congrats! You just learned how to automate your workflow with Twilio SMS. To improve upon this you could add anonymous communications so that the host and guest could communicate through a shared Twilio phone number. Hmmm... maybe we'll have to put together a tutorial on that!
+    Congrats! You just learned how to automate your workflow with Twilio SMS.
+
+    To improve upon this you could add anonymous communications so that the host and guest could communicate through a shared Twilio phone number. Hmmm... maybe we'll have to put together a tutorial on that!
 
     Thanks for checking out this tutorial! If you have any feedback to share with us, we'd love to hear it. Tweet [@twilio](http://twitter.com/twilio) to let us know what you think.
 
