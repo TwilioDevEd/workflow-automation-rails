@@ -1,0 +1,13 @@
+# docker-compose config for workflow-automation-rails
+
+web:
+  build: .
+  ports:
+    - "8080:8080"
+  volumes:
+    - .:/usr/src/app
+  links:
+    - postgres
+
+postgres:
+  image: postgres:9.4
