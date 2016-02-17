@@ -2,6 +2,8 @@
 
 Learn how to automate your workflow using Twilio's REST API and Twilio SMS. This example app is a vacation rental site, where the host can confirm a reservation via SMS. 
 
+[Read the full tutorial here](https://www.twilio.com/docs/tutorials/walkthrough/workflow-automation/ruby/rails)!
+
 ## Running the application
 
 Clone this repository and cd into the directory then.
