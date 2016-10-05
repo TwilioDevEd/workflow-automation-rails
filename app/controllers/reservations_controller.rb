@@ -1,5 +1,4 @@
 class ReservationsController < ApplicationController
-
   # GET /vacation_properties/new
   def new
     @reservation = Reservation.new
@@ -10,8 +9,8 @@ class ReservationsController < ApplicationController
     @reservation = @vacation_property.reservations.create(reservation_params)
 
     if @reservation.save
-      flash[:notice] = "Sending your reservation request now."
-      @reservation.notify_host
+      flash[:notice] = 'Sending your reservation request now.'
+      @reservation.notify_host(true)
       redirect_to @vacation_property
     else
       flast[:danger] = @reservation.errors
@@ -34,6 +33,8 @@ class ReservationsController < ApplicationController
 
       @host.check_for_reservations_pending
 
+      @reservation.notify_guest
+
       sms_reponse = "You have successfully #{@reservation.status} the reservation."
       respond(sms_reponse)
     rescue
@@ -43,17 +44,17 @@ class ReservationsController < ApplicationController
   end
 
   private
-    # Send an SMS back to the Subscriber
-    def respond(message)
-      response = Twilio::TwiML::Response.new do |r|
-        r.Message message
-      end
-      render text: response.text
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def reservation_params
-      params.require(:reservation).permit(:name, :phone_number, :message)
+  # Send an SMS back to the Subscriber
+  def respond(message)
+    response = Twilio::TwiML::Response.new do |r|
+      r.Message message
     end
+    render xml: response.text
+  end
 
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def reservation_params
+    params.require(:reservation).permit(:name, :phone_number, :message)
+  end
 end

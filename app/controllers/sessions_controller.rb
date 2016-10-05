@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   before_filter :save_login_state, :only => [:login, :login_attempt]
 
   def login
-    #Login Form
+    # Login Form
   end
 
   def login_attempt
@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
 
     else
       flash[:notice] = "Invalid Username or Password"
-      render "login"  
+      render "login"
     end
   end
 

@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
 # Use postgresql as the database for Active Record
@@ -27,7 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt', '~> 3.1.7'
 
 # Use Twilio to send confirmation message
-gem 'twilio-ruby'
+gem 'twilio-ruby', '~> 5.0.0.rc17'
 # Use sanitize
 gem 'sanitize'
 
@@ -38,7 +37,7 @@ group :production do
   gem 'rails_12factor'
 end
 
-group :development, :test do
+group :development do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
@@ -50,5 +49,6 @@ group :development, :test do
 
   # Mocha for mocking
   gem 'mocha'
-end
 
+  gem 'pry'
+end
