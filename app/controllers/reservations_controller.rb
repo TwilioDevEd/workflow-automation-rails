@@ -47,10 +47,9 @@ class ReservationsController < ApplicationController
 
   # Send an SMS back to the Subscriber
   def respond(message)
-    response = Twilio::TwiML::Response.new do |r|
-      r.Message message
-    end
-    render xml: response.text
+    response = Twilio::TwiML::MessagingResponse.new
+    response.message message
+    render xml: response.to_xml_str
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
