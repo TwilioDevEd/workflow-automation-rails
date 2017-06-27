@@ -7,7 +7,7 @@ class Reservation < ActiveRecord::Base
   belongs_to :vacation_property
   belongs_to :user
 
-  def notify_host(force = false)
+  def notify_host(force = true)
     @host = User.find(self.vacation_property[:user_id])
 
     # Don't send the message if we have more than one or we aren't being forced
